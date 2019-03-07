@@ -2,9 +2,7 @@
     SDRs model 0.1
 ======================#
 
-using PyCall
 using SparseArrays
-
 
 module Dense
 

@@ -2,17 +2,15 @@
     SDRs model 0.1
 ======================#
 
-using PyCall
 using SparseArrays
 using StatsBase
-
 
 module HDBinary
     import SparseArrays
     import SparseArrays.sparsevec
     import StatsBase
 
-    BITFORMAT = Int8
+    BITFORMAT = Int32
 
     function RandomGenerator(n::Int64)
         # generates binary vector of form [0 1 0 1 1 0 0 0 ... 1 0 1 0 0 1 1]

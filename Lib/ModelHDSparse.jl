@@ -8,7 +8,7 @@ module HDSparse
     import SparseArrays
     import SparseArrays.sparsevec
 
-    BITFORMAT = Int8
+    BITFORMAT = Int32
 
     function RandomGenerator(n, w)
         # generates random vector of form [0 0 0 ... 0 1 0 ... 0 1 0 0 0 ...]
