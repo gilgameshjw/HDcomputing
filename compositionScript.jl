@@ -6,7 +6,6 @@ using LinearAlgebra
 using PlotlyJS
 using Blink
 using WebIO
-#Blink.AtomShell.install()
 using ORCA
 
 include("Lib/ModelDense.jl")
@@ -117,13 +116,16 @@ function doAnalysis(dicParameters)
     end
 
     layout1 = Layout(;title = name,
-                     xaxis=attr(title="Nb of Elements in Set", showgrid=false, zeroline=false),
-                     yaxis=attr(title="Averaged Similarity", zeroline=false),
-                     shapes=[hline(0)])
+                     xaxis=attr(title="<b> Nb of Elements in Set </b>", showgrid=false, zeroline=false),
+                     yaxis=attr(title="<b> Averaged Similarity </b>", zeroline=false),
+                     shapes=[hline(0)],
+                     font=attr(size=16))
     layout2 = Layout(;title = name,
-                      xaxis=attr(title="Nb of Elements in Set", showgrid=false, zeroline=false),
-                      yaxis=attr(title="Sim_N+1-Sim_N + std_N+1+std_N", zeroline=false),
-                      shapes=[hline(0)])
+                      xaxis=attr(title="<b> Nb of Elements in Set </b>", showgrid=false, zeroline=false),
+                      yaxis=attr(title="<b> (Sim_N+1-Sim_N + std_N+1+std_N) / (std_N+1+std_N) </b>" ,
+                                 zeroline=false),
+                      shapes=[hline(0)],
+                      font=attr(size=16))
     Dict(:plotOverview => plot(vcat(plotsOverview...), layout1),
          :plotDeltas => plot(vcat(plotsDeltas...), layout2))
 end
@@ -141,7 +143,7 @@ dicParameters = Dict(:params => params,
                      :similarity => HDSparse.cosineSimilarity,
                      :nbVectors => 1000,
                      :nbNeighbours => 40,
-                     :title => "HD Sparse Vectors",
+                     :title => "<b> HD Sparse Vectors </b>",
                      :colors => ["blue", "green", "brown", "magenta", "red"])
 p = dicParameters |> doAnalysis
 
@@ -149,7 +151,10 @@ figFileName = string("Results/HDSparseFig1Overview.pdf")
 savefig(p[:plotOverview], figFileName)
 figFileName = string("Results/HDSparseFig1Deltas.pdf")
 savefig(p[:plotDeltas], figFileName)
-
+figFileName = string("Results/HDSparseFig1Overview.jpeg")
+savefig(p[:plotOverview], figFileName)
+figFileName = string("Results/HDSparseFig1Deltas.jpeg")
+savefig(p[:plotDeltas], figFileName)
 
 #############
 # HD Binary #
@@ -162,7 +167,7 @@ dicParameters = Dict(:params => params,
                      :similarity => HDBinary.cosineSimilarity,
                      :nbVectors => 1000,
                      :nbNeighbours => 40,
-                     :title => "Dense Vectors",
+                     :title => "HD Dense Binary Vectors",
                      :colors => ["blue", "green", "brown", "magenta", "red"])
 p = dicParameters |> doAnalysis
 
@@ -170,13 +175,16 @@ figFileName = string("Results/HDBinaryFig1Overview.pdf")
 savefig(p[:plotOverview], figFileName)
 figFileName = string("Results/HDBinaryFig1Deltas.pdf")
 savefig(p[:plotDeltas], figFileName)
-
+figFileName = string("Results/HDBinaryFig1Overview.jpeg")
+savefig(p[:plotOverview], figFileName)
+figFileName = string("Results/HDBinaryFig1Deltas.jpeg")
+savefig(p[:plotDeltas], figFileName)
 
 #########
 # Dense #
 #########
 
-params = map(n -> Dict(:n => n), [50, 200 , 500,  1000])
+params = map(n -> Dict(:n => n), [50, 500,  1000, 5000])
 dicParameters = Dict(:params => params,
                      :fct => Dense.RandomGenerator,
                      :composition => Dense.composition,
@@ -190,4 +198,8 @@ p = dicParameters |> doAnalysis
 figFileName = string("Results/HDDenseFig1Overview.pdf")
 savefig(p[:plotOverview], figFileName)
 figFileName = string("Results/HDDenseFig1Deltas.pdf")
+savefig(p[:plotDeltas], figFileName)
+figFileName = string("Results/HDDenseFig1Overview.jpeg")
+savefig(p[:plotOverview], figFileName)
+figFileName = string("Results/HDDenseFig1Deltas.jpeg")
 savefig(p[:plotDeltas], figFileName)
