@@ -97,17 +97,37 @@ The code is available online \footnote{\url{github}}.
  \end{center}
  \caption{After building sets of sizes 1 to N by superposition, one
  		  compares similarities of random elements of same sizes and 			  of sets of sizes $1$ VS $N$, $N$ VS $N+1$ with similar 			  subconstituents. This is done on the left side for sparse 		  and dense binary vectors as well as for dense vectors.
- 		  On the right, the relative differences corrected with
- 		  the standard deviations are plotted (FORMULA). The y axis is the 
- 		  number of standard deviation within which retrieval 
- 		  of sub elements would be achievable and being under zero 
- 		  indicates incapacity to retrieve data with similarity. 
+ 		  On the right, the approximated relative distance to an incidentally wrong superposition in standard deviations are plotted (see subsection 3 for details). The number of standard deviations is on the y  axis and secure retrievals are  above zero. 
  		  While dense vectors information collapses under 	
- 		  superposition, large SDM would allow to identify subelements 
+ 		  superposition, large SDM would allow to identify sub-elements 
 		  and distinguish correctly the nearest structures, thus 		      confirming the theory. 
  		  }
  \label{pics:composition}
 \end{figure}
+
+\subsection{Similarity and Comparison Measures for Search}
+In Fig.\ref{pics:composition}, 
+we are comparing the various vectors behaviour under superposition.
+On one hand, we are comparing similarities for:
+\begin{itemize}
+\item vectors of same sizes (superpositions of N dissimilar sub-elements)
+\item superposition 1 VS superpose N (similar sub-elements)
+\item superposition N VS superpose N+1 (similar sub-elements)
+\end{itemize}
+We also want to evaluate, given a similarity 1 VS N or N VS N+1, the chance to retrieve the correct superposition. Obviously, as the superposition is built on random vectors, there is a probability of incidental overlap that will diminish with the vector's size. 
+
+
+Even though the chance incidental error can be exactly
+computed for SDM's, we approach it via our simple experiment with random vectors.
+Here, as a first approximation, we compute:
+\begin{eqnarray*}
+\Delta E(N,\, N+1) &=& \frac{(s_{N,\, N+1} - s_{N+1,\, N+2}) + \Delta E_{N} + \Delta E_{N+1} } {\Delta E_{N} + \Delta E_{N+1}}, \\
+\Delta E(N,\, 1) & = & \frac{(s_{N,\, 1} - s_{N+1,\, 1}) + \Delta E_{N} + \Delta E_{1}}{\Delta E_{N} + \Delta E_{1}},
+\end{eqnarray*}
+with $s_{i, \, j} \equiv similarity(superposition_j, superposition_{j})$ and $stdd_{i,\, j}$
+for the standard deviation for similarities $s_{N, \, N+1}$ for all the  compositions considered.
+This approximates or evaluates the relative distance to incidental superposition in  standard deviations, thus giving a measure of how likely it is to retrieve the correct superposition for search. 
+
 
 \section{Memory Requirements}
 We here simply review the models memory scaling behaviours:
@@ -132,8 +152,7 @@ vector types and sizes, focusing on the superpositions of atomic elements, we ha
 \begin{thebibliography}{9}
 
 \bibitem{kanerva1}
-  P. Kanerva,
-  \textit{\LaTeX: Hyperdimensional Computing},
+  \textit{ Hyperdimensional Computing}, Kanerva Pentti,
   Addison Wesley, Massachusetts,
   2nd edition,
   1994.
@@ -144,7 +163,7 @@ vector types and sizes, focusing on the superpositions of atomic elements, we ha
 
 \bibitem{kanerva2}
  \textit{Sparse Distributed Memory}
- Kanerva, Pentti (1988).  The MIT Press. ISBN 978-0-262-11132-4
+ Kanerva Pentti,  The MIT Press (1988). ISBN 978-0-262-11132-4
 
 \end{thebibliography}
 

@@ -122,7 +122,7 @@ function doAnalysis(dicParameters)
                      font=attr(size=16))
     layout2 = Layout(;title = name,
                       xaxis=attr(title="<b> Nb of Elements in Set </b>", showgrid=false, zeroline=false),
-                      yaxis=attr(title="<b> (Sim_N+1-Sim_N + std_N+1+std_N) / (std_N+1+std_N) </b>" ,
+                      yaxis=attr(title= "<b> Distance to false positive (in std. Deviations) </b>", #"<b> (Sim_N+1-Sim_N + std_N+1+std_N) / (std_N+1+std_N) </b>" ,
                                  zeroline=false),
                       shapes=[hline(0)],
                       font=attr(size=16))
@@ -147,10 +147,6 @@ dicParameters = Dict(:params => params,
                      :colors => ["blue", "green", "brown", "magenta", "red"])
 p = dicParameters |> doAnalysis
 
-figFileName = string("Results/HDSparseFig1Overview.pdf")
-savefig(p[:plotOverview], figFileName)
-figFileName = string("Results/HDSparseFig1Deltas.pdf")
-savefig(p[:plotDeltas], figFileName)
 figFileName = string("Results/HDSparseFig1Overview.jpeg")
 savefig(p[:plotOverview], figFileName)
 figFileName = string("Results/HDSparseFig1Deltas.jpeg")
@@ -171,10 +167,6 @@ dicParameters = Dict(:params => params,
                      :colors => ["blue", "green", "brown", "magenta", "red"])
 p = dicParameters |> doAnalysis
 
-figFileName = string("Results/HDBinaryFig1Overview.pdf")
-savefig(p[:plotOverview], figFileName)
-figFileName = string("Results/HDBinaryFig1Deltas.pdf")
-savefig(p[:plotDeltas], figFileName)
 figFileName = string("Results/HDBinaryFig1Overview.jpeg")
 savefig(p[:plotOverview], figFileName)
 figFileName = string("Results/HDBinaryFig1Deltas.jpeg")
@@ -195,10 +187,6 @@ dicParameters = Dict(:params => params,
                      :colors => ["blue", "green", "brown", "magenta", "red"])
 p = dicParameters |> doAnalysis
 
-figFileName = string("Results/HDDenseFig1Overview.pdf")
-savefig(p[:plotOverview], figFileName)
-figFileName = string("Results/HDDenseFig1Deltas.pdf")
-savefig(p[:plotDeltas], figFileName)
 figFileName = string("Results/HDDenseFig1Overview.jpeg")
 savefig(p[:plotOverview], figFileName)
 figFileName = string("Results/HDDenseFig1Deltas.jpeg")
