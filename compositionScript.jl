@@ -124,6 +124,7 @@ function doAnalysis(dicParameters)
                       xaxis=attr(title="<b> Nb of Elements in Set </b>", showgrid=false, zeroline=false),
                       yaxis=attr(title= "<b> Distance to false positive (in std. Deviations) </b>", #"<b> (Sim_N+1-Sim_N + std_N+1+std_N) / (std_N+1+std_N) </b>" ,
                                  zeroline=false),
+                      yaxis=attr(range=[-2,16])
                       shapes=[hline(0)],
                       font=attr(size=16))
     Dict(:plotOverview => plot(vcat(plotsOverview...), layout1),
