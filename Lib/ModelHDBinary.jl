@@ -1,5 +1,5 @@
 #=====================
-    SDRs model 0.1
+    HD binary model 0.1
 ======================#
 
 using SparseArrays

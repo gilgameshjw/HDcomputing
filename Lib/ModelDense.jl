@@ -1,5 +1,5 @@
 #=====================
-    SDRs model 0.1
+    Dense model 0.1
 ======================#
 
 using SparseArrays

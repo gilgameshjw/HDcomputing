@@ -1,5 +1,5 @@
 #=====================
-    SDRs model 0.1
+    SDMs model 0.1
 ======================#
 
 using SparseArrays
@@ -37,6 +37,17 @@ module HDSparse
         sparseVectorMultiplication(ri1, ri2) /
             (length(ri2.nzval) * length(ri2.nzval))^.5
     end
+
+    function encodeOnTheFly(dic1DSparseRepres, modelEncoding, wrdOrTag)
+        if haskey(dic1DSparseRepres, wrdOrTag)
+            dic1DSparseRepres[wrdOrTag].nzind
+        else
+            randSDM = RandomGenerator(modelEncoding[:n], modelEncoding[:w])
+            dic1DSparseRepres[wrdOrTag] = randSDM
+            randSDM.nzind
+        end
+    end
+
 end
 
 export HDSparse
